@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      #root {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const fetchData = async () => {
+        const url = "https://api.kanye.rest/";
+        const response = await fetch(url);
+        const data = await response.json();
+        const quote = data.quote;
+
+        const root = document.getElementById("root");
+
+        const h1 = document.createElement("h1");
+        h1.innerText = quote;
+
+        const button = document.createElement("button");
+        button.innerText = "Refresh";
+
+        button.addEventListener("click", () => {
+          window.location.reload();
+        });
+
+        root.appendChild(h1);
+        root.appendChild(button);
+      };
+
+      fetchData();
+    </script>
+  </body>
+</html>
